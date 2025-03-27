@@ -9,7 +9,8 @@ import {
   Star, 
   MessageCircle, 
   ShieldCheck, 
-  BrainCircuit 
+  BrainCircuit,
+  Users
 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import TileButton from '@/components/ui/TileButton';
@@ -49,6 +50,13 @@ const Index = () => {
             color="purple"
           />
           <TileButton 
+            icon={Users}
+            title="Специалисты"
+            description="Наша команда"
+            to="/specialists"
+            color="teal"
+          />
+          <TileButton 
             icon={FileText}
             title="Статьи"
             description="Полезные материалы"
@@ -60,7 +68,7 @@ const Index = () => {
             title="Кабинет"
             description="Личный профиль"
             to="/profile"
-            color="teal"
+            color="amber"
           />
         </div>
 

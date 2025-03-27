@@ -1,5 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { toast } from "@/hooks/use-toast";
 
 // Типы пользователей
 export type UserRole = 'user' | 'specialist' | 'admin';
@@ -56,20 +57,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   
   // Функция для входа через Telegram
   const loginWithTelegram = () => {
-    // Токен бота Telegram
-    const botToken = '7365896423:AAF9RJwe0SOD-Guh68ei7k_ccGYWusyHIs4';
-    
-    // В реальном приложении здесь была бы интеграция с Telegram Login Widget
-    // Поскольку это пример, мы просто симулируем вход пользователя через Telegram
+    // В реальном приложении здесь должен быть инициирован процесс OAuth с Telegram
+    // Для демонстрационных целей создаем макет авторизации
     
     setLoading(true);
+    setError(null);
+    
+    // Уведомление пользователя о том, что это демонстрационная версия авторизации
+    toast({
+      title: "Демо-режим авторизации",
+      description: "В реальном приложении здесь будет настоящая авторизация через Telegram",
+    });
     
     // Имитация успешного входа через Telegram
     setTimeout(() => {
       const mockUser: User = {
-        id: 'tg_123456',
+        id: 'tg_' + Date.now().toString(),
         name: 'Пользователь Telegram',
-        avatar: 'https://via.placeholder.com/150',
+        avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&h=100&auto=format&fit=crop',
         role: 'user',
         telegramId: '123456789'
       };
@@ -77,6 +82,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(mockUser);
       localStorage.setItem('user', JSON.stringify(mockUser));
       setLoading(false);
+      
+      // Уведомление об успешном входе
+      toast({
+        title: "Успешный вход",
+        description: "Вы вошли через Telegram",
+        variant: "success",
+      });
     }, 1000);
   };
   
@@ -86,26 +98,55 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      // Здесь должен быть запрос к API для аутентификации
-      // Имитация запроса
-      if (email && password) {
-        const mockUser: User = {
-          id: 'email_123456',
-          name: email.split('@')[0],
-          email,
-          role: 'user'
-        };
-        
-        setUser(mockUser);
-        localStorage.setItem('user', JSON.stringify(mockUser));
-      } else {
-        throw new Error('Неверный email или пароль');
+      // В реальном приложении здесь должен быть запрос к API
+      // Для демонстрационных целей проверяем только наличие email и password
+      
+      if (!email || !password) {
+        throw new Error('Введите email и пароль');
       }
+      
+      // Уведомление пользователя о том, что это демонстрационная версия авторизации
+      toast({
+        title: "Демо-режим авторизации",
+        description: "В реальном приложении здесь будет настоящая авторизация",
+      });
+      
+      // Имитация задержки API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const mockUser: User = {
+        id: 'email_' + Date.now().toString(),
+        name: email.split('@')[0],
+        email,
+        role: 'user',
+        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&h=100&auto=format&fit=crop'
+      };
+      
+      setUser(mockUser);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      
+      // Уведомление об успешном входе
+      toast({
+        title: "Успешный вход",
+        description: "Вы вошли в свой аккаунт",
+        variant: "success",
+      });
+      
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
+        toast({
+          title: "Ошибка при входе",
+          description: err.message,
+          variant: "destructive",
+        });
       } else {
         setError('Произошла ошибка при входе');
+        toast({
+          title: "Ошибка при входе",
+          description: "Произошла неизвестная ошибка",
+          variant: "destructive",
+        });
       }
       throw err;
     } finally {
@@ -119,24 +160,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      // Здесь должна быть интеграция с Google OAuth
-      // Имитация успешного входа
+      // В реальном приложении здесь должна быть интеграция с Google OAuth
+      
+      // Уведомление пользователя о том, что это демонстрационная версия авторизации
+      toast({
+        title: "Демо-режим авторизации",
+        description: "В реальном приложении здесь будет настоящая авторизация через Google",
+      });
+      
+      // Имитация задержки API
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockUser: User = {
-        id: 'google_123456',
+        id: 'google_' + Date.now().toString(),
         name: 'Пользователь Google',
         email: 'user@gmail.com',
-        avatar: 'https://via.placeholder.com/150',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop',
         role: 'user'
       };
       
       setUser(mockUser);
       localStorage.setItem('user', JSON.stringify(mockUser));
+      
+      // Уведомление об успешном входе
+      toast({
+        title: "Успешный вход",
+        description: "Вы вошли через Google",
+        variant: "success",
+      });
+      
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
+        toast({
+          title: "Ошибка при входе через Google",
+          description: err.message,
+          variant: "destructive",
+        });
       } else {
         setError('Произошла ошибка при входе через Google');
+        toast({
+          title: "Ошибка при входе через Google",
+          description: "Произошла неизвестная ошибка",
+          variant: "destructive",
+        });
       }
       throw err;
     } finally {
@@ -150,26 +217,53 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      // Здесь должен быть запрос к API для регистрации
-      // Имитация запроса
-      if (name && email && password) {
-        const mockUser: User = {
-          id: 'reg_' + Date.now().toString(),
-          name,
-          email,
-          role: 'user'
-        };
-        
-        setUser(mockUser);
-        localStorage.setItem('user', JSON.stringify(mockUser));
-      } else {
+      // Проверка полей
+      if (!name || !email || !password) {
         throw new Error('Пожалуйста, заполните все поля');
       }
+      
+      // Уведомление пользователя о том, что это демонстрационная версия регистрации
+      toast({
+        title: "Демо-режим регистрации",
+        description: "В реальном приложении здесь будет настоящая регистрация",
+      });
+      
+      // Имитация задержки API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const mockUser: User = {
+        id: 'reg_' + Date.now().toString(),
+        name,
+        email,
+        role: 'user',
+        avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&h=100&auto=format&fit=crop'
+      };
+      
+      setUser(mockUser);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      
+      // Уведомление об успешной регистрации
+      toast({
+        title: "Успешная регистрация",
+        description: "Ваш аккаунт создан",
+        variant: "success",
+      });
+      
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
+        toast({
+          title: "Ошибка при регистрации",
+          description: err.message,
+          variant: "destructive",
+        });
       } else {
         setError('Произошла ошибка при регистрации');
+        toast({
+          title: "Ошибка при регистрации",
+          description: "Произошла неизвестная ошибка",
+          variant: "destructive",
+        });
       }
       throw err;
     } finally {
@@ -181,6 +275,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
+    
+    // Уведомление о выходе
+    toast({
+      title: "Выход из аккаунта",
+      description: "Вы успешно вышли из своего аккаунта",
+    });
   };
   
   // Предоставляем контекст аутентификации
