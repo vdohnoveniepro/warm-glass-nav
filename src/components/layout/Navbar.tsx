@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 frosted-glass py-2 px-1 z-50 border-t border-white/20">
+    <nav className="fixed bottom-0 left-0 right-0 glass-nav py-2 px-1 z-50 border-t border-warmbeige-100/50">
       <div className="max-w-md mx-auto flex justify-between items-center">
         {navItems.map((item) => (
           <Link
@@ -25,17 +25,17 @@ const Navbar = () => {
             className={cn(
               "flex flex-col items-center justify-center px-3 pt-2 pb-1 rounded-lg transition-all duration-300",
               location.pathname === item.path
-                ? "text-indigo-600 font-medium"
-                : "text-gray-600 hover:text-gray-800",
+                ? "text-purple-600 font-medium"
+                : "text-warmgray-600 hover:text-warmgray-800",
               item.special && "relative"
             )}
           >
             {item.special ? (
               <div className="flex flex-col items-center">
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg p-3 mb-1 shadow-lg relative z-10 hover:shadow-indigo-200/50 hover:translate-y-[-2px] transition-all">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-3 mb-1 shadow-lg relative z-10 hover:shadow-purple-200/50 hover:translate-y-[-2px] transition-all">
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xs font-medium">
+                <span className="text-xs font-medium text-purple-600">
                   {item.name}
                 </span>
               </div>
