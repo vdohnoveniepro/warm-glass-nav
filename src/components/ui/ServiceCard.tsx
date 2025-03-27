@@ -11,6 +11,7 @@ interface ServiceCardProps {
   price: string;
   specialist?: string;
   className?: string;
+  image?: string;
 }
 
 const ServiceCard = ({
@@ -19,7 +20,8 @@ const ServiceCard = ({
   duration,
   price,
   specialist,
-  className
+  className,
+  image
 }: ServiceCardProps) => {
   return (
     <Link
@@ -29,6 +31,19 @@ const ServiceCard = ({
         className
       )}
     >
+      {image && (
+        <div className="w-full h-36 mb-3 rounded-lg overflow-hidden">
+          <img 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+      )}
+      
       <h3 className="text-lg font-semibold mb-2 text-gray-800">{title}</h3>
       
       <div className="flex items-center justify-between mb-3">

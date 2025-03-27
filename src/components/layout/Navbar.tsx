@@ -34,6 +34,7 @@ const Navbar = () => {
               <div className="flex flex-col items-center">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-3 mb-1 shadow-lg relative z-10 hover:shadow-purple-200/50 hover:translate-y-[-2px] transition-all">
                   <item.icon className="w-5 h-5 text-white" />
+                  <div className="absolute -inset-[2px] bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg opacity-0 hover:opacity-30 transition-opacity duration-1000 z-0"></div>
                 </div>
                 <span className="text-xs font-medium text-purple-600">
                   {item.name}

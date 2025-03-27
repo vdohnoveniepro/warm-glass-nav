@@ -47,7 +47,6 @@ const Index = () => {
             description="Консультация"
             to="/book"
             color="purple"
-            featured
           />
           <TileButton 
             icon={FileText}

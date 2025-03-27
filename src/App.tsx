@@ -5,12 +5,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ru } from 'date-fns/locale';
+import { AuthProvider } from "./hooks/use-auth";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Book from "./pages/Book";
 import Articles from "./pages/Articles";
 import Profile from "./pages/Profile";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -18,20 +20,23 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:id" element={<ServiceDetail />} />
-          <Route path="/book" element={<Book />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/book" element={<Book />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/auth" element={<Auth />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

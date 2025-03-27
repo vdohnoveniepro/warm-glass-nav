@@ -8,16 +8,6 @@ import { cn } from '@/lib/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogTrigger 
-} from '@/components/ui/dialog';
-import { 
-  Drawer, 
-  DrawerContent, 
-  DrawerTrigger 
-} from '@/components/ui/drawer';
 import { useMediaQuery } from '@/hooks/use-mobile';
 
 const Book = () => {
@@ -35,17 +25,17 @@ const Book = () => {
   
   // Sample data
   const services = [
-    { id: '1', title: 'Первая бесплатная консультация', duration: '30 мин', price: '0' },
-    { id: '2', title: 'ВсеЛенская терапия', duration: '2 ч', price: '4000' },
-    { id: '3', title: 'Легализация правды', duration: '2 ч', price: '4000' },
-    { id: '4', title: 'Таро', duration: '1 ч', price: '2500' },
-    { id: '5', title: 'Регрессия', duration: '3 ч', price: '4000' },
+    { id: '1', title: 'Первая бесплатная консультация', duration: '30 мин', price: '0', image: '/images/services/consultation.jpg' },
+    { id: '2', title: 'ВсеЛенская терапия', duration: '2 ч', price: '4000', image: '/images/services/therapy.jpg' },
+    { id: '3', title: 'Легализация правды', duration: '2 ч', price: '4000', image: '/images/services/truth.jpg' },
+    { id: '4', title: 'Таро', duration: '1 ч', price: '2500', image: '/images/services/tarot.jpg' },
+    { id: '5', title: 'Регрессия', duration: '3 ч', price: '4000', image: '/images/services/regression.jpg' },
   ];
   
   const specialists = [
-    { id: '1', name: 'Анна Иванова', photo: null },
-    { id: '2', name: 'Михаил Петров', photo: null },
-    { id: '3', name: 'Елена Смирнова', photo: null },
+    { id: '1', name: 'Анна Иванова', photo: '/images/specialists/anna.jpg' },
+    { id: '2', name: 'Михаил Петров', photo: '/images/specialists/mikhail.jpg' },
+    { id: '3', name: 'Елена Смирнова', photo: '/images/specialists/elena.jpg' },
   ];
   
   const availableTimes = ['10:00', '12:00', '14:00', '16:00', '18:00'];
@@ -116,59 +106,6 @@ const Book = () => {
     );
   };
 
-  // Calendar selector with responsive dialog/drawer
-  const DateSelector = () => {
-    return isDesktop ? (
-      <Dialog>
-        <DialogTrigger asChild>
-          <button className="w-full flex justify-between items-center p-4 frosted-glass rounded-lg hover:shadow-md transition-all duration-300 mb-4">
-            <div className="flex items-center">
-              <CalendarIcon className="w-5 h-5 mr-3 text-indigo-500" />
-              <span className="text-gray-800">
-                {selectedDate 
-                  ? format(selectedDate, 'PPP', { locale: ru }) 
-                  : 'Выбрать дату'}
-              </span>
-            </div>
-            <div>
-              <ArrowLeft className="w-5 h-5 transform rotate-180 text-indigo-500" />
-            </div>
-          </button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <div className="py-4">
-            <h2 className="text-xl font-semibold mb-4 text-center">Выберите дату</h2>
-            <CalendarPicker />
-          </div>
-        </DialogContent>
-      </Dialog>
-    ) : (
-      <Drawer>
-        <DrawerTrigger asChild>
-          <button className="w-full flex justify-between items-center p-4 frosted-glass rounded-lg hover:shadow-md transition-all duration-300 mb-4">
-            <div className="flex items-center">
-              <CalendarIcon className="w-5 h-5 mr-3 text-indigo-500" />
-              <span className="text-gray-800">
-                {selectedDate 
-                  ? format(selectedDate, 'PPP', { locale: ru }) 
-                  : 'Выбрать дату'}
-              </span>
-            </div>
-            <div>
-              <ArrowLeft className="w-5 h-5 transform rotate-180 text-indigo-500" />
-            </div>
-          </button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <div className="py-6 px-4">
-            <h2 className="text-xl font-semibold mb-4 text-center">Выберите дату</h2>
-            <CalendarPicker />
-          </div>
-        </DrawerContent>
-      </Drawer>
-    );
-  };
-  
   // Render step content
   const renderStepContent = () => {
     switch (step) {
@@ -211,8 +148,12 @@ const Book = () => {
                   onClick={() => handleSpecialistSelect(specialist.id)}
                   className="w-full flex items-center p-4 frosted-glass rounded-lg hover:shadow-md transition-all duration-300"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mr-4">
-                    <User className="w-6 h-6 text-indigo-500" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mr-4 overflow-hidden">
+                    {specialist.photo ? (
+                      <img src={specialist.photo} alt={specialist.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <User className="w-6 h-6 text-indigo-500" />
+                    )}
                   </div>
                   <div className="flex-1 text-left">
                     <h3 className="font-medium text-gray-800">{specialist.name}</h3>
@@ -232,17 +173,7 @@ const Book = () => {
         return (
           <div className="animate-slide-in">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Выберите дату</h2>
-            <DateSelector />
-            {selectedDate && (
-              <div className="mt-4">
-                <button
-                  onClick={() => setStep(4)}
-                  className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-lg"
-                >
-                  Продолжить
-                </button>
-              </div>
-            )}
+            <CalendarPicker />
           </div>
         );
       case 4:
