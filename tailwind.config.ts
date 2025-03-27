@@ -63,34 +63,42 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-        // Custom warm color palette
-        warmbeige: {
-          50: '#FAF6F0',
-          100: '#F5EFE6',
-          200: '#EBE0D0',
-          300: '#DCCDB8',
-          400: '#C7B6A0',
-          500: '#B5A48B',
-          600: '#9A8C76',
-          700: '#7C7061',
-          800: '#594E42',
-          900: '#352E27',
+        // Custom colors
+        indigo: {
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
         },
-        warmgray: {
-          50: '#F9F7F5',
-          100: '#F0EDE8',
-          200: '#E8E3DD',
-          300: '#D4CDC5',
-          400: '#BDB6AE',
-          500: '#A29A8F',
-          600: '#8A8278',
-          700: '#6E685E',
-          800: '#4B4841',
-          900: '#27251F',
+        purple: {
+          50: '#FAF5FF',
+          100: '#F3E8FF',
+          200: '#E9D5FF',
+          300: '#D8B4FE',
+          400: '#C084FC',
+          500: '#A855F7',
+          600: '#9333EA',
+          700: '#7E22CE',
+          800: '#6B21A8',
+          900: '#581C87',
         },
-        highlight: {
-          DEFAULT: '#F0D6B4',
-          hover: '#E6C99F',
+        pink: {
+          50: '#FDF2F8',
+          100: '#FCE7F3',
+          200: '#FBCFE8',
+          300: '#F9A8D4',
+          400: '#F472B6',
+          500: '#EC4899',
+          600: '#DB2777',
+          700: '#BE185D',
+          800: '#9D174D',
+          900: '#831843',
         },
         glass: {
           light: 'rgba(255, 255, 255, 0.7)',
@@ -130,10 +138,10 @@ export default {
         },
         'glow': {
           '0%, 100%': { 
-            boxShadow: '0 0 5px rgba(240, 214, 180, 0.6), 0 0 10px rgba(240, 214, 180, 0.4)' 
+            boxShadow: '0 0 5px rgba(99, 102, 241, 0.6), 0 0 10px rgba(99, 102, 241, 0.4)' 
           },
           '50%': { 
-            boxShadow: '0 0 15px rgba(240, 214, 180, 0.8), 0 0 20px rgba(240, 214, 180, 0.6)' 
+            boxShadow: '0 0 15px rgba(99, 102, 241, 0.8), 0 0 20px rgba(99, 102, 241, 0.6)' 
           },
         },
         'slide-in': {

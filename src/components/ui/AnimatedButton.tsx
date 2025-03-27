@@ -17,12 +17,12 @@ const AnimatedButton = ({
   fullWidth = false,
   variant = 'primary'
 }: AnimatedButtonProps) => {
-  const baseClasses = "relative overflow-hidden rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary py-3 px-6";
+  const baseClasses = "relative overflow-hidden rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 py-3 px-6 shadow-sm";
   
   const variantClasses = {
-    primary: "bg-primary text-warmgray-800 hover:bg-primary/90 shadow-sm",
-    secondary: "bg-secondary text-warmgray-800 hover:bg-secondary/90",
-    outline: "bg-transparent border border-primary text-warmgray-800 hover:bg-primary/10"
+    primary: "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:shadow-lg hover:shadow-indigo-200/50",
+    secondary: "bg-gradient-to-r from-pink-400 to-rose-400 text-white hover:shadow-lg hover:shadow-pink-200/50",
+    outline: "bg-transparent border border-indigo-400 text-indigo-700 hover:bg-indigo-50"
   };
 
   return (

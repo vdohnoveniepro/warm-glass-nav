@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 glass-nav py-2 px-1 z-50">
+    <nav className="fixed bottom-0 left-0 right-0 frosted-glass py-2 px-1 z-50 border-t border-white/20">
       <div className="max-w-md mx-auto flex justify-between items-center">
         {navItems.map((item) => (
           <Link
@@ -25,27 +25,28 @@ const Navbar = () => {
             className={cn(
               "flex flex-col items-center justify-center px-3 pt-2 pb-1 rounded-lg transition-all duration-300",
               location.pathname === item.path
-                ? "text-primary font-medium"
-                : "text-warmgray-600 hover:text-warmgray-800",
+                ? "text-indigo-600 font-medium"
+                : "text-gray-600 hover:text-gray-800",
               item.special && "relative"
             )}
           >
             {item.special ? (
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full animate-glow"></div>
-                <div className="bg-primary rounded-full p-3 mb-1 shadow-md relative z-10">
-                  <item.icon className="w-6 h-6 text-warmgray-800" />
+              <div className="flex flex-col items-center">
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg p-3 mb-1 shadow-lg relative z-10 hover:shadow-indigo-200/50 hover:translate-y-[-2px] transition-all">
+                  <item.icon className="w-5 h-5 text-white" />
                 </div>
+                <span className="text-xs font-medium">
+                  {item.name}
+                </span>
               </div>
             ) : (
-              <item.icon className="nav-icon" />
+              <>
+                <item.icon className="w-5 h-5 mb-1" />
+                <span className="text-xs">
+                  {item.name}
+                </span>
+              </>
             )}
-            <span className={cn(
-              "text-xs mt-1",
-              item.special && "font-medium"
-            )}>
-              {item.name}
-            </span>
           </Link>
         ))}
       </div>

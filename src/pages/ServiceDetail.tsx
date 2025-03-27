@@ -36,7 +36,7 @@ const ServiceDetail = () => {
         {/* Back Button */}
         <Link 
           to="/services" 
-          className="inline-flex items-center text-warmgray-600 hover:text-warmgray-800 mb-4 transition-colors"
+          className="inline-flex items-center text-gray-600 hover:text-gray-800 mb-4 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-1" />
           <span>Назад к услугам</span>
@@ -44,42 +44,42 @@ const ServiceDetail = () => {
         
         {/* Service Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold mb-3 text-warmgray-800">{service.title}</h1>
+          <h1 className="text-2xl font-semibold mb-3 text-gray-800">{service.title}</h1>
           
           <div className="flex items-center gap-4 mb-3">
-            <div className="flex items-center text-warmgray-600">
+            <div className="flex items-center text-gray-600">
               <Clock className="w-4 h-4 mr-1" />
               <span>{service.duration}</span>
             </div>
-            <div className="font-medium text-warmgray-800">{service.price} ₽</div>
+            <div className="font-medium text-indigo-600">{service.price} ₽</div>
           </div>
         </div>
         
         {/* Service Description */}
-        <div className="glass-card rounded-xl p-5 mb-6">
-          <h2 className="text-lg font-medium mb-3 text-warmgray-800">Описание</h2>
-          <div className="text-warmgray-600 whitespace-pre-line">
+        <div className="frosted-glass rounded-xl p-5 mb-6">
+          <h2 className="text-lg font-medium mb-3 text-gray-800">Описание</h2>
+          <div className="text-gray-600 whitespace-pre-line">
             {service.description}
           </div>
         </div>
         
         {/* Specialists */}
-        <div className="glass-card rounded-xl p-5 mb-8">
-          <h2 className="text-lg font-medium mb-3 text-warmgray-800">Специалисты</h2>
+        <div className="frosted-glass rounded-xl p-5 mb-8">
+          <h2 className="text-lg font-medium mb-3 text-gray-800">Специалисты</h2>
           
           <div className="space-y-4">
             {service.specialists.map((specialist) => (
               <div key={specialist.id} className="flex items-center justify-between p-3 bg-white/60 rounded-lg">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-warmbeige-200 rounded-full flex items-center justify-center mr-3">
-                    <User className="w-5 h-5 text-warmgray-600" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mr-3">
+                    <User className="w-5 h-5 text-indigo-500" />
                   </div>
                   <div>
-                    <div className="font-medium text-warmgray-800">{specialist.name}</div>
-                    <div className="text-xs text-warmgray-600">Опыт: {specialist.experience}</div>
+                    <div className="font-medium text-gray-800">{specialist.name}</div>
+                    <div className="text-xs text-gray-600">Опыт: {specialist.experience}</div>
                   </div>
                 </div>
-                <Link to={`/specialists/${specialist.id}`} className="text-sm text-primary font-medium">
+                <Link to={`/specialists/${specialist.id}`} className="text-sm text-indigo-500 font-medium">
                   Профиль
                 </Link>
               </div>
