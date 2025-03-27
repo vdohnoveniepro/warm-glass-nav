@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, LogIn, BrandTelegram, BrandGoogle } from 'lucide-react';
+import { Mail, Lock, User, LogIn, MessageCircle, Globe } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
@@ -162,7 +162,7 @@ const Auth = () => {
               className="w-full flex items-center justify-center"
               onClick={handleTelegramLogin}
             >
-              <BrandTelegram className="w-5 h-5 mr-2 text-blue-500" />
+              <MessageCircle className="w-5 h-5 mr-2 text-blue-500" />
               Войти через Telegram
             </Button>
             
@@ -172,7 +172,7 @@ const Auth = () => {
               className="w-full flex items-center justify-center"
               onClick={handleGoogleLogin}
             >
-              <BrandGoogle className="w-5 h-5 mr-2 text-red-500" />
+              <Globe className="w-5 h-5 mr-2 text-red-500" />
               Войти через Google
             </Button>
           </div>
